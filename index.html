@@ -7,11 +7,37 @@
   <style>
     body { font-family: Arial; background: #f1f8e9; padding: 20px; }
     h2 { text-align: center; }
-    .filtros { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
-    .filtros input, .filtros select { padding: 5px; }
-    .resumo { background: #c8f7c5; padding: 15px; border-radius: 10px; max-width: 500px; margin: auto; white-space: pre-line; }
-    button { display: block; margin: 20px auto 0; padding: 10px 15px; background-color: #4caf50; color: white; border: none; cursor: pointer; border-radius: 5px; }
-    button:hover { background-color: #388e3c; }
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .filtros input, .filtros select {
+      padding: 5px;
+    }
+    .resumo {
+      background: #c8f7c5;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      white-space: pre-line;
+    }
+    button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 15px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
   </style>
 </head>
 <body>
@@ -33,7 +59,7 @@
 <button onclick="enviarWhatsapp()">📤 Exportar para WhatsApp</button>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbybdSwkIvWXGYO8s-3oKMKrHTZROM61p9XenIDRiHQurGsSdC_EgGHxXs3Mvn1PHm10IA/exec"; // substitua aqui
+const API_URL = "https://script.google.com/macros/s/AKfycbybdSwkIvWXGYO8s-3oKMKrHTZROM61p9XenIDRiHQurGsSdC_EgGHxXs3Mvn1PHm10IA/exec";
 
 let dados = [];
 
@@ -50,11 +76,10 @@ window.onload = async function () {
     document.getElementById("empresa").appendChild(opt);
   });
 
-  // Datas padrão
+  // Datas padrão do mês vigente
   const hoje = new Date();
-  const ontem = new Date(hoje);
-  ontem.setDate(hoje.getDate() - 1);
-  document.getElementById("dataInicio").value = ontem.toISOString().substr(0, 10);
+  const primeiroDia = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+  document.getElementById("dataInicio").value = primeiroDia.toISOString().substr(0, 10);
   document.getElementById("dataFim").value = hoje.toISOString().substr(0, 10);
 
   aplicarFiltro();
